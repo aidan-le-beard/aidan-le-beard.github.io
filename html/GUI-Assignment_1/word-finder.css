@@ -1,0 +1,30 @@
+html {
+  background-color: aliceblue; /* update background color */
+}
+
+/* Add other properties: */
+h1 {
+  text-align: center;
+}
+
+.div {
+  margin: 0px 150px 0px 30px;
+}
+
+form {
+  margin: 0px 0px 0px 39px;
+}
+
+select {
+  resize: both;
+}
+
+.input1 {
+  width: 40%;
+}
+
+.div3 {
+  height: 310px;
+  width: 100px;
+  resize: both;
+}

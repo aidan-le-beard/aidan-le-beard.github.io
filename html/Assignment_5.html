@@ -1,0 +1,115 @@
+<!-- Aidan Le-Beard
+Dr. Sarah North
+CS 4720 / W01
+Module 5 Assignment -->
+
+<!DOCTYPE html>
+<html>
+
+<!-- head section: import the stylesheet and .js file, and put the title on the tab -->
+<head>
+  <script type="text/javascript" src="Assignment_5.js" async></script>
+  <link rel="stylesheet" href="Assignment_2.css">
+  <title>Aidan Le-Beard Assignment 5</title>
+</head>
+
+<body>
+
+<!-- Main header for the site -->
+<header>
+  <center>
+    <h1>Aidan Le-Beard's Module 5 Assignment</h1>
+    <a href="https://studentweb.kennesaw.edu/~alebeard/" target="_blank">Home</a>
+  </center>
+</header>
+
+<p>Note: CGI Scripts are not supported here, so posting does not work on this server, despite all of the required files being here.</p>
+
+<form method="post" action="/cgi-bin/Assignment_5.py" target="_blank"> <!-- Encapsulate whole form in <form> tag -->
+  <!-- Our first table -->
+  <table class="table table1">
+
+    <tr class="tr tr1"> <!-- first row -->
+      <td class="td td1"><b>Shipping Information:</b></td>
+    </tr>
+
+    <tr class="tr tr1"> <!-- second row -->
+      <td class="td td1">
+        <label for="shippingNameInput">
+          Name:
+        </label>
+      </td>
+    </tr>
+
+    <tr class="tr tr1"> <!-- third row -->
+      <!-- Let's try onkeypress+onkeyup to get the input, should work more "modern," allowing for continuous updates 
+      Also let's try out using "this" with HTML. Pass the value to the JS to copy to Billing 
+      We also need to add "name" for the POSTing, id is for CSS/JS -->
+      <td class="td td1"><input type="text" id="shippingNameInput" name="shippingNameInput" onkeyup="copyNameText(this.value)" onkeypress="copyNameText(this.value)"></td>
+    </tr>
+
+    <tr class="tr tr1"> <!-- fourth row -->
+      <td class="td td1">
+        <label for="shippingZipInput">
+          Zip Code:
+        </label>
+      </td>
+    </tr>
+
+    <tr class="tr tr1"> <!-- fifth row -->
+      <!-- Pass this.value to the JavaScript to copy to the billing. Add "name" field for POST -->
+      <td class="td td1"><input type="text" id="shippingZipInput" name="shippingZipInput" onkeyup="copyZipText(this.value)" onkeypress="copyZipText(this.value)"></td>
+    <tr class="tr tr1">
+
+  </table>
+
+  <!-- Our check box to see if we should copy the shipping info to the billing info -->
+  <br />
+  <div>
+    <input type="checkbox" id="copyShippingInfo">
+    <label for="copyShippingInfo">Is the Billing Information the same?</label>
+  </div>
+  <br />
+
+  <!-- Our second table, that can potentially mirror the first table -->
+  <table class="table table1">
+
+    <tr class="tr tr1"> <!-- first row -->
+      <td class="td td1"><b>Billing Information:</b></td>
+    </tr>
+
+    <tr class="tr tr1"> <!-- second row -->
+      <td class="td td1">
+        <label for="billingNameInput">
+          Name:
+        </label>
+      </td>
+    </tr>
+
+    <tr class="tr tr1"> <!-- third row -->
+      <td class="td td1"><input type="text" id="billingNameInput" name="billingNameInput"></td> <!-- Add "name" for POST -->
+    </tr>
+
+    <tr class="tr tr1"> <!-- fourth row -->
+      <td class="td td1">
+        <label for="billingZipInput">
+          Zip Code:
+        </label>
+      </td>
+    </tr>
+
+    <tr class="tr tr1"> <!-- fifth row -->
+      <td class="td td1"><input type="text" id="billingZipInput" name="billingZipInput"></td> <!-- Add "name" field for POST -->
+    <tr class="tr tr1">
+
+  </table>
+
+  <br />
+
+  <!-- Post/submit Button, runs Python CGI Script -->
+  <input type="submit" value="Verify" class="button button5">
+</form>
+
+</body>
+
+</html>

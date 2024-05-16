@@ -1,0 +1,149 @@
+/* Aidan Le-Beard
+Dr. Sarah North
+CS 4720 / W01
+Module 2, CSS Sheet */
+
+body, h1, h2, h3, h4, h5, h6 {
+  font-family: helvetica, arial, sans-serif;
+  background-color: aliceblue; /* "change the default color for the background." "You don’t have to use the same colors in the screen shots" */
+  color: black;
+}
+
+body {
+  margin-top: 0px;
+  margin-left: 60px;
+  font-size: 16px;
+  margin-bottom: 48px;
+}
+
+h1 {
+  color: blue;
+  font-size: 32px;
+  margin: 12px;
+}
+
+h2 {
+  color: darkslategrey;
+  margin-left: -16px;
+  margin-top: 32px;
+  margin-bottom: 12px;
+  font-size: 24px;
+}
+
+h3 {
+  color: blue;
+  font-size: 18px;
+}
+
+/* Make a solid border like the example */
+form {
+  padding: 10px 10px 15px 10px;
+  border-style: solid;
+  width: 42%;
+}
+
+table, tr {
+  border-spacing: 15px;
+}
+
+td {
+  border: solid;
+  border-color: blue;
+}
+
+.tr1, .td1 {
+  border: none;
+  border-spacing: 8px;
+}
+
+.table1 {
+  border: solid;
+  border-color: rgb(75, 75, 98);
+}
+
+/* "Define 5 styles for foreground buttons and 5 styles for background buttons." 5 styles also defined for hover, for fun.
+    6th style defined for the button on Part 1 of the assignment, to resemble the PDF */
+.button {
+  font-size: xx-large; /* "Set font-size of buttons as xx-large" per PDF instructions */
+  background-color: #e7e7e7;
+  color: black;
+}
+
+.button:hover {
+  background-color: darkgrey;
+}
+
+.button:active {
+  background-color: blue;
+  color:azure;
+}
+
+.button1 {
+  background-color: cornflowerblue;
+  color: white;
+}
+
+.button1:hover {
+  background-color: black;
+}
+
+.button1:active {
+  background-color: red;
+  color: yellow;
+}
+
+.button2 {
+  background-color: cyan;
+  color: darkmagenta;
+}
+
+.button2:hover {
+  background-color: forestgreen;
+  color:lemonchiffon;
+}
+
+.button2:active {
+  background-color: gold;
+  color: indigo;
+}
+
+.button3 {
+  background-color: ghostwhite;
+  color: deepskyblue;
+}
+
+.button3:hover {
+  background-color: deeppink;
+  color: dodgerblue;
+}
+
+.button3:active {
+  background-color: fuchsia;
+  color: darkblue;
+}
+
+.button4 {
+  background-color: maroon;
+  color: #eeee00;
+}
+
+.button4:hover {
+  background-color: yellow;
+  color: red;
+}
+
+.button4:active {
+  background-color: red;
+  color: yellow;
+}
+
+.button5 {
+  font-size: large; /* "Set font-size of buttons as xx-large" per PDF instructions */
+  background-color: limegreen;
+  color: white;
+}
+
+.button5:active {
+  background-color: green;
+  color: white;
+}

@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+
+<!--
+  COLLABORATORS:
+  Aidan Le-Beard
+-->
+
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>Checkerboard</title>
+
+<!-- Load style sheets -->
+<link rel="stylesheet" type="text/css" href="mainLayout.css" />
+
+<!-- Load any supplemental Javascript libraries here -->
+<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.5.1/jquery.min.js"></script>
+<script type="text/javascript" src="checker.js"></script>
+<script type="text/javascript" src="boardEvent.js"></script>
+<script type="text/javascript" src="board.js"></script>
+
+<script type="text/javascript">
+	var DEFAULT_BOARD_SIZE = 8;
+	//data model
+	var board;
+
+// This allows the Javascript code inside this block to only run when the page
+// has finished loading in the browser.
+$(document).ready(function() {
+
+	if ($.getUrlVar('size') && $.getUrlVar('size') >= 6){
+		board = new Board($.getUrlVar('size'));
+	} else {
+		board = new Board(DEFAULT_BOARD_SIZE);
+	}
+	
+	board.prepareNewGame(); // move this up here so we can use it, couldn't check in the loop what checkers were on squares with it below
+	
+	// Your code here
+	// locate all our images 
+	const blackKing = new Image();   // Create new image element	
+	blackKing.src = 'graphics/black-king.png'; // Set source path
+
+	const blackPiece = new Image();   // Create new image element	
+	blackPiece.src = 'graphics/black-piece.png'; // Set source path
+
+	const redKing = new Image();   // Create new image element	
+	redKing.src = 'graphics/red-king.png'; // Set source path
+
+	const redPiece = new Image();   // Create new image element	
+	redPiece.src = 'graphics/red-piece.png'; // Set source path
+
+	// create an array of the images
+	var images = [blackKing, blackPiece, redKing, redPiece];
+	var imagesLoaded = 0;
+
+	// load all of our images before drawing
+	for(var i = 0; i < images.length; i++){
+		images[i].onload = function(){
+			imagesLoaded++;
+			if(imagesLoaded == images.length){
+				draw(0, 0, 0, 0); // draw the board/images
+			}
+		}
+	}
+
+	// draw the board, checker pieces
+	function draw(startX, startY, endX, endY) {
+        const canvas = document.getElementById("checkerboardCanvas");
+        if (canvas.getContext) {
+        	const context = canvas.getContext("2d");
+
+			// each square will be the total width of 400 divided by the board size (size x size)
+			var squareWidth = 400 / board.size();
+
+			// Board is 2D array of [row,col] (y,x)
+			var white = true; // keep track of if square will be black or white
+			var x = 0; // keep track of top left corner position
+			var y = 0; // keep track of top left corner position
+			var z = squareWidth;
+
+			// iterate through 2D array to fill in squares based on board size
+			for (var i = 0; i < board.square.length - 1; i++) { // row
+				for (var j = 0; j < board.square.length - 1; j++) { // col
+					if (white) {
+						// fillRect: X, Y, Z, W: 
+						// X,Y determines the top left position of the rectangle being filled
+						// Z,W determines the Width, Height
+						context.fillStyle = "rgb(255, 255, 255)"; // color to fill
+						context.fillRect(x, y, z, z);
+						white = !white; // next square is black, so change
+					} else {
+						context.fillStyle = "rgb(0, 0, 0)"; // color to fill
+						context.fillRect(x, y, z, z);
+						white = !white; // next square is white, so change
+					}
+
+					// at the given position in the 2D array, draw the proper piece
+					if (board.getCheckerAt(i, j) != null) {
+						if (board.getCheckerAt(i, j).color == 'black' && board.getCheckerAt(i, j).isKing == false) {
+							// x,y is where the image appears, z,w is the size and width, so set to the same size as the 
+							// square for when we have different sized squares
+							context.drawImage(blackPiece, x, y, squareWidth, squareWidth);
+						} else if (board.getCheckerAt(i, j).color == 'black' && board.getCheckerAt(i, j).isKing == true) {
+							context.drawImage(blackKing, x, y, squareWidth, squareWidth);
+						} else if (board.getCheckerAt(i, j).color == 'red' && board.getCheckerAt(i, j).isKing == false) {
+							context.drawImage(redPiece, x, y, squareWidth, squareWidth);
+						} else if (board.getCheckerAt(i, j).color == 'red' && board.getCheckerAt(i, j).isKing == true) {
+							context.drawImage(redKing, x, y, squareWidth, squareWidth);
+						}
+					}
+
+					if (startX != 0 && startY != 0 && endX != 0 && endY != 0) {
+						context.beginPath();
+						context.moveTo(startY, startX);
+						context.lineTo(endY, endX);
+						context.strokeStyle = '#FFFF00';
+						context.lineWidth = 5;
+						context.stroke();
+					}
+
+					x += squareWidth;
+				}
+				// if the board is even squares the next square is the same color, if odd it's the opposite color
+				if ((board.square.length - 1) % 2 == 0) {
+					white = !white; // next square is opposite of last one, so change
+				}
+				y += squareWidth;
+				x = 0;
+			}
+
+        } // end if / context
+      } // end draw
+	
+
+	board.addEventListener('add',function (e) {
+		// Your code here
+	},true);
+
+	board.addEventListener('move',function (e) {
+		// Your code here
+	},true);
+
+	board.addEventListener('remove',function (e) {
+		// Your code here
+	},true);
+
+	board.addEventListener('promote',function (e) {
+		// Your code here
+	},true);
+
+	$("#btnNewGame").click(function(evt) {
+		board.prepareNewGame();
+		// Your code here
+		// re-draw the board after moving pieces
+		draw(0, 0, 0, 0);
+	});
+
+	$("#btnMoveRandomly").click(function(evt) {
+		randomChecker = board.getRandomChecker();
+		randomLoc = board.getRandomEmptyLocation();
+
+		// your code here
+		var squareWidth = 400 / board.size();
+		var startX = (randomChecker.row * squareWidth) + (squareWidth / 2);
+		var startY = randomChecker.col * squareWidth + (squareWidth / 2);
+
+		var endX = randomLoc.row * squareWidth + (squareWidth / 2);
+		var endY = randomLoc.col * squareWidth + (squareWidth / 2);
+
+		// not my code
+		if (randomChecker && randomLoc){
+			board.moveTo(randomChecker, randomLoc.row, randomLoc.col);
+		}
+
+		// your code here
+		// call draw to update the moved position
+		draw(startX, startY, endX, endY);
+	});
+
+	$("#btnKingRandomly").click(function(evt) {
+		randomChecker = board.getRandomNonKing();
+		board.promote(randomChecker);
+		// Your code here
+		// re-draw the board after moving pieces
+		draw(0, 0, 0, 0);
+	});
+
+	$("#btnClear").click(function(evt) {
+		board.clear();
+		// Your code here
+		// re-draw the board after moving pieces
+		draw(0, 0, 0, 0);
+	});
+
+});
+
+// This script extracts parameters from the URL
+// from jquery-howto.blogspot.com
+$.extend({
+  getUrlVars: function(){
+    var vars = [], hash;
+    var hashes = window.location.href.slice(window.location.href.indexOf('?') + 1).split('&');
+    for(var i = 0; i < hashes.length; i++)
+    {
+      hash = hashes[i].split('=');
+      vars.push(hash[0]);
+      vars[hash[0]] = hash[1];
+    }
+    return vars;
+  },
+  getUrlVar: function(name){
+    return $.getUrlVars()[name];
+  }
+});
+
+</script>
+
+
+</head>
+
+<body>
+
+<header><center><h1>Checkerboard GUI Assignment</h1></center></header> <!-- Header -->
+
+<h3> Hint: The board size can be changed by appending ?size=X to the end of the URL, where X is an integer greater than or equal to 6.</h3>
+<h3> Note: Only the sections marked "Your code here" in index.html were written by me. These sections include code to create/draw/load the canvas <br /> (board and checker piece images), and to implement the button functions below the board. </h3>
+
+<canvas id="checkerboardCanvas" width="400" height="400"></canvas>
+
+
+<table id="mainTable">
+	<tr>
+		<td id="navigation">
+			<table>
+				<tr><td><input id="btnNewGame" type="button" name="new" value="New Game"/></td></tr>
+				<tr><td><input id="btnMoveRandomly" type="button" name="moveRandomly" value="Move Randomly"/></td></tr>
+				<tr><td><input id="btnKingRandomly" type="button" name="kingRandomly" value="King Randomly"/></td></tr>
+				<tr><td><input id="btnClear" type="button" name="clear" value="Clear"/></td></tr>
+			</table>
+		</td>
+
+		<td id="content">
+			<!-- Your code here -->
+		</td>
+	</tr>
+	
+   </table>
+
+</body>
+
+</html>

@@ -1,0 +1,62 @@
+<!-- Aidan Le-Beard
+Dr. Sarah North
+CS 4720 / W01
+Module 2 Assignment, Part 2 -->
+
+<!DOCTYPE html>
+<html>
+
+<head>
+  <!-- Import the JavaScript files -->
+  <script type="text/javascript" src="Assignment_2.js" async></script>
+  <link rel="stylesheet" href="Assignment_2.css">
+  <title>Module 2 Assignment, Part 2</title>
+</head>
+
+<body onload="addCell()"> <!-- Load the first cell when the webpage loads -->
+
+<header>
+  <center>
+    <h1>Aidan Le-Beard's Module 2 Assignment, Part 2</h1>
+  </center>
+</header>
+
+<header>
+  <h2>2) Add Cells, Remove Cells, and Sort by Character Count</h2>
+  <p>Parameters: Must always have at least 1 cell, and must remember the data input in removed cells.</p>
+</header>
+
+<form>
+
+  <div>
+    <b>&emsp;&emsp;&emsp;&emsp;Input:&emsp;&emsp;&emsp;&nbsp;&nbsp;&nbsp;Text Length:</b><br /> <!-- Approximately Center the Visible Components -->
+  </div>
+  
+  <div id="addRemoveCells"></div> <!-- Length of the text input and text box is written to this div from Assignment_2.js. 1 written on start up -->
+
+  <br />
+
+  <!-- Putting 3 buttons in a table -->
+  <table>
+    <tr>
+      <td><input type="submit" value="Add Cell" onclick="return addCell()" class="button"></td> <!-- If we make this type="button" then it doesn't submit, so we don't have to return false! That is to say, type="submit" automatically submits! -->
+      <td><button onclick="return removeCell()" class="button button1">Remove Cell</button></td>
+      <td><button onclick="return sortDivs()" class="button button2">Sort</button></td>
+    </tr>
+    
+  </table>
+
+</form>
+
+<h2>Back to Aidan's Home (Index) Page:</h2>
+<form action="./index.html" target="_blank">
+  <input type="submit" value="Home Page" class="button button3">
+</form>
+
+<h2>Back to Aidan's Module 2, Assignment Part 1:</h2>
+<form action="Mod_2_Assignment_1.html" target="_blank">
+  <input type="submit" value="Module 2 Assignment, Part 1" class="button button4">
+</form>
+
+</body>
+</html>

@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+
+<!--
+  COLLABORATORS:
+  Aidan Le-Beard
+-->
+
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>Word Finder</title>
+
+<!-- Load any supplemental Javascript libraries here -->
+<script type="text/javascript" src="jquery-1.5.min.js"></script>
+
+<script type="text/javascript" src="words-large.json"></script>
+
+<script type="text/javascript" src="dictionary.js"></script>
+
+<link rel="stylesheet" href="word-finder.css">
+
+</head>
+<body>
+
+<header><h1>Welcome to Word Finder!</h1></header> <!-- Header -->
+
+<h3> Hint: Search using '_' for wildcard characters. For example, "Air_l_ne" will search "airplane".</h3>
+
+<br />
+
+<!-- Create the search box, clear button, and Find: label like in the assignment PDF -->
+<div class="div div1">
+  <label for="searchBox">Find: </label>
+  <input type="search" class="input input1" id="searchBox" value="">
+  &emsp;
+  <button class="button button1" id="clearButton">Clear</button>
+</div>
+
+<!-- Create the select box and label like in the assignment PDF -->
+<form>
+  <div class="div div2">
+    <br />
+    <label for="selectOptions" id="selectBoxLabel"></label>
+    <br />
+    <br />
+  </div>
+  <div style="overflow: scroll" class="div div3" id="selectOptions"></div>
+</form>
+
+<!-- Place at the bottom to work properly -->
+<script type="text/javascript" src="word-finder-highlight-div-scroll.js"></script>
+
+</body>
+
+</html>

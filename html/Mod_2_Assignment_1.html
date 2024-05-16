@@ -1,0 +1,74 @@
+<!-- Aidan Le-Beard
+Dr. Sarah North
+CS 4720 / W01
+Module 2 Assignment, Part 1 -->
+
+<!DOCTYPE html>
+<html>
+
+<head>
+  <!-- Import the JavaScript files -->
+  <script type="text/javascript" src="squareNumber.js" async></script>
+  <script type="text/javascript" src="fixStart.js" async></script>
+  <script type="text/javascript" src="notBad.js" async></script>
+  <link rel="stylesheet" href="Assignment_2.css">
+  <title>Module 2 Assignment, Part 1</title>
+</head>
+
+<body>
+
+<header>
+  <center>
+    <h1>Aidan Le-Beard's Module 2 Assignment, Part 1</h1>
+    <a href="https://studentweb.kennesaw.edu/~alebeard/" target="_blank">Home</a>
+  </center>
+</header>
+
+<header>
+  <h2>1) 3 Scripts</h2>
+</header>
+
+<header>
+  <h3>Script #1: squareNumber</h3> <!-- Header for first script -->
+</header>
+
+<div>
+  <b>Enter a number to be squared:</b><br />
+  <!-- pass what is currently in the input text box to the JavaScript function. Note: we alternate "" and '' as necessary -->
+  <input type="text" id="toBeSquared">
+  <button onclick="squareNumber(document.getElementById('toBeSquared').value)" class="button button5">Square!</button><br />
+  <b>Result:</b> <p id="resultOfSquare"></p>
+</div>
+
+<header>
+  <h3>Script #2: fixStart</h3> <!-- Header for second script -->
+</header>
+
+<div>
+  <b>Enter a string. All subsequent occurrences of the first character will be replaced with "*".</b><br />
+  <strong>Note that uppercase and lowercase characters will be considered different characters, and that this updates in real time:</strong><br />
+  <!-- oninput works for text. "input" works for textarea, "search",... -->
+  <input type="text" id="replaceWithAsterisks" oninput="fixStart(document.getElementById('replaceWithAsterisks').value)"><br />
+  <b>Result:</b> <p id="replaced"></p>
+</div>
+
+<header>
+  <h3>Script #3: notBad</h3> <!-- Header for third script -->
+</header>
+
+<div>
+  <b>Enter a string. Any substring "not ... bad" is replaced with "good":</b><br />
+  <strong>Note: this updates in real time!</strong><br />
+    <!-- oninput works for text. "input" works for textarea, "search",... -->
+  <input type="text" id="goodOrBad" oninput="notBad(document.getElementById('goodOrBad').value)"><br />
+  <b>Result:</b> <p id="wasItGood"></p>
+</div>
+
+<!-- Button to "Assignment 2" -->
+<h2>2) Assignment 2 (for Module 2):</h2>
+<form action="Mod_2_Assignment_2.html" target="_blank">
+  <input type="submit" value="Module 2 Assignment, Part 2" class="button">
+</form>
+
+</body>
+</html>
